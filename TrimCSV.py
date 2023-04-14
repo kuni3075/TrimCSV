@@ -2,6 +2,7 @@ import csv
 import tkinter as tk
 from tkinter import filedialog
 import matplotlib.pyplot as plt
+import japanize_matplotlib
 import os
 
 class Application(tk.Frame):
@@ -13,31 +14,31 @@ class Application(tk.Frame):
 
     def create_widgets(self):
         self.select_file_button = tk.Button(self, text="Select CSV File", command=self.select_file)
-        self.select_file_button.pack(side="top")
+        self.select_file_button.grid(row=0, column=0, padx=5, pady=5, columnspan=2)
 
         self.min_entry = tk.Entry(self)
-        self.min_entry.pack(side="left")
+        self.min_entry.grid(row=2, column=1, padx=5, pady=5)
         self.min_label = tk.Label(self, text="X Min:")
-        self.min_label.pack(side="left")
+        self.min_label.grid(row=2, column=0, padx=5, pady=5)
 
         self.max_entry = tk.Entry(self)
-        self.max_entry.pack(side="left")
+        self.max_entry.grid(row=3, column=1, padx=5, pady=5)
         self.max_label = tk.Label(self, text="X Max:")
-        self.max_label.pack(side="left")
+        self.max_label.grid(row=3, column=0, padx=5, pady=5)
 
         self.output_entry = tk.Entry(self)
-        self.output_entry.pack(side="left")
+        self.output_entry.grid(row=4, column=1, padx=5, pady=5)
         self.output_label = tk.Label(self, text="Output File Name:")
-        self.output_label.pack(side="left")
+        self.output_label.grid(row=4, column=0, padx=5, pady=5)
 
         self.trim_button = tk.Button(self, text="Trim Data", command=self.trim_data)
-        self.trim_button.pack(side="top")
+        self.trim_button.grid(row=5, column=0, padx=5, pady=5)
 
         self.plot_button = tk.Button(self, text="Plot Data", command=self.plot_data)
-        self.plot_button.pack(side="top")
+        self.plot_button.grid(row=1, column=0, padx=5, pady=5, columnspan=2)
 
         self.quit_button = tk.Button(self, text="Quit", fg="red", command=self.master.destroy)
-        self.quit_button.pack(side="bottom")
+        self.quit_button.grid(row=5, column=1, padx=5, pady=5)
 
     def select_file(self):
         self.file_path = filedialog.askopenfilename(filetypes=(("CSV files", "*.csv"), ("All files", "*.*")))
@@ -92,5 +93,6 @@ class Application(tk.Frame):
         plt.show()
 
 root = tk.Tk()
+root.title("TrimCSV")
 app = Application(master=root)
 app.mainloop()
